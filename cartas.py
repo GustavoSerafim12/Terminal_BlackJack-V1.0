@@ -1,0 +1,44 @@
+import random
+
+valores = {
+    "A": 11,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    "J": 10,
+    "Q": 10,
+    "K": 10
+}
+
+naipes = ["♠", "♥", "♦", "♣"]
+
+
+def value_card(carta):
+    return valores[carta[0]]
+##
+
+def value_mao(mao):
+    value = 0
+    for carta in mao:
+        value += value_card(carta)
+    
+    if(value > 21):
+        for carta in mao:
+            if(carta[0] == "A"):
+                value -= 10
+                continue
+    return value
+##
+
+def print_mao(mao):
+    for carta in mao:
+        valor, naipe = carta
+        print("(" + valor + naipe + ")", end=" ")
+    print("valor:", value_mao(mao))
+##
