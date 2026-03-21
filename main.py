@@ -8,25 +8,27 @@ from ui import render_menu
 def menu():
     render_menu()
 
-    x = 0
-    integer = input("(1):Game                     (2):LeaderBoard:")
+    input_menu = 0
+    input_menu = input("(1):Game                     (2):LeaderBoard:")
     try:
-        x = int(integer)
+        input_menu = int(input_menu)
     except ValueError:
-        x = 0
+         input_menu = 0
 
-    if (x == 1):
+    if (input_menu == 1):
         game()
-    if (x == 2):
+    if (input_menu == 2):
         #leaderboard
         os.system('clear')
         print("leaderboard")
-    if(x != 1 & x!= 2):
+    if(input_menu != 1 & input_menu!= 2):
         os.system('clear')
         print("invalid input!")
         time.sleep(1)
         menu()
+##
 
+#running_code
 menu()
 
 
