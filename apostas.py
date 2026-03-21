@@ -26,6 +26,13 @@ def aposta(coins, bet):
         os.system('clear')
         bet = 0
         return coins, bet, False
+    if(bet < coins*0.1):
+        print("aposta minima de 10% do valor total")
+        time.sleep(1)
+        os.system('clear')
+        bet = 0
+        return coins, bet, False
+    
     else:
         # Deduct bet from coins
         coins -= bet
@@ -40,5 +47,5 @@ def payout(coins, bet, win):
         coins = coins
     if(win == win_states["TIE"]):
         coins += bet
-        
+
     return coins

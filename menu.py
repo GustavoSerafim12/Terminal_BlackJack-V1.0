@@ -9,7 +9,7 @@ def menu():
     render_menu()
 
     input_menu = 0
-    input_menu = input("(1):Game  (2):LeaderBoard: (3):Rules")
+    input_menu = input("(1):Game  (2):LeaderBoard: (3):Rules (4):Quit  ")
     try:
         input_menu = int(input_menu)
     except ValueError:
@@ -28,6 +28,10 @@ def menu():
         os.system('clear')
         return "rules"
 
+    if(input_menu == 4):
+        #quit
+        return "quit"
+    
     else:
         os.system('clear')
         print("invalid input!")

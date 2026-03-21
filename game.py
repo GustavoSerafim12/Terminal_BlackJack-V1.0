@@ -17,7 +17,7 @@ def game():
     #iniciar as variaveis
 
     coins = 100
-    
+
     while(1):
         coins = game_loop(coins)
 ##
@@ -50,7 +50,7 @@ def game_loop(coins):
         render_game(coins, bet, player_hand, dealer_hand)
 
         try:
-            input_player_turn = int(input("(1): HIT (2):STAY    :   "))
+            input_player_turn = int(input("(1): HIT (2):STAY    :  "))
         except ValueError:
             input_player_turn = ""
 
