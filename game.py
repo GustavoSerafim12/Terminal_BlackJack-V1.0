@@ -25,6 +25,7 @@ def game():
 
 def game_loop(coins):
 
+    # Create shuffled deck: all combinations of values and suits
     baralho = [
     (valor, naipe)
     for naipe in naipes
@@ -101,20 +102,24 @@ def game_loop(coins):
     return coins
 ##
 
-## return 0 continue - 1 player win - 2 dealer win - 3 tie
 def check_win(player_hand, dealer_hand, force_win):
+    # Determine winner: check busts first, then compare hands if force_win is True
     valor_player_hand = value_mao(player_hand)
     valor_dealer_hand = value_mao(dealer_hand)
 
+    # Player busts: dealer wins immediately
     if(valor_player_hand > 21):
         return win_states["DEALER_WIN"]
 
+    # Dealer busts: player wins immediately
     if(valor_dealer_hand > 21):
         return win_states["PLAYER_WIN"]
     
+    # If force_win is False, game is still ongoing
     if(force_win == False):
         return win_states["CONTINUE"]
     
+    # Compare final hands when both are under 21
     else:
         if(valor_player_hand<valor_dealer_hand):
             return win_states["DEALER_WIN"]

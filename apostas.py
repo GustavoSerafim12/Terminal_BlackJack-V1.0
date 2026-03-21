@@ -12,11 +12,7 @@ def aposta(coins, bet):
     except ValueError:
         bet = 0
     
-    if(bet == 12012007):
-        bet = 10
-        coins = 10000
-        os.system('clear')
-        return coins, bet, True
+    # Validate bet: must be positive and not exceed available coins
     if(bet > coins or bet <= 0):
         print("valor invaldo!")
         time.sleep(1)
@@ -24,6 +20,7 @@ def aposta(coins, bet):
         bet = 0
         return coins, bet, False
     else:
+        # Deduct bet from coins
         coins -= bet
         os.system('clear')
         return coins, bet, True
