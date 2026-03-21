@@ -44,10 +44,9 @@ def game_loop(coins):
     player_hand = [baralho.pop(), baralho.pop()]
     dealer_hand = [baralho.pop()]
 
-    x = 1
 
     ##player turn
-    while(x == 1):
+    while True:
 
         render_game(coins, bet, player_hand, dealer_hand)
 
@@ -63,8 +62,7 @@ def game_loop(coins):
             
 
         if(input_player_turn == 2):
-            x = 0
-            continue
+            break
 
         if(input_player_turn == 1):
             player_hand.append(baralho.pop())
@@ -74,7 +72,7 @@ def game_loop(coins):
             if(win == 0):
                 continue
             else:
-                x = 0
+                break
     
     #dealer turn
     dealer_hand.append(baralho.pop())
