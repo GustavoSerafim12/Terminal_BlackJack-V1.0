@@ -3,7 +3,7 @@ import time
 from cartas import *
 import random
 from ui import *
-from apostas import aposta
+from apostas import *
 
 win_states = {
     "CONTINUE": 0,
@@ -90,13 +90,9 @@ def game_loop(coins):
         win = check_win(player_hand, dealer_hand, True)
 
 
-    if(win == win_states["PLAYER_WIN"]):
-        coins += 2*bet
-    if(win == win_states["DEALER_WIN"]):
-        coins = coins
-    if(win == win_states["TIE"]):
-        coins += bet
+    coins = payout(coins, bet, win)
     render_win(win)
+    
     return coins
 ##
 

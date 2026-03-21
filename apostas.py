@@ -2,6 +2,13 @@ from ui import render_aposta
 import time
 import os
 
+win_states = {
+    "CONTINUE": 0,
+    "PLAYER_WIN": 1,
+    "DEALER_WIN": 2,
+    "TIE": 3
+}
+
 def aposta(coins, bet):
 
     render_aposta(coins)
@@ -26,3 +33,12 @@ def aposta(coins, bet):
         return coins, bet, True
 ##
 
+def payout(coins, bet, win):
+    if(win == win_states["PLAYER_WIN"]):
+        coins += 2*bet
+    if(win == win_states["DEALER_WIN"]):
+        coins = coins
+    if(win == win_states["TIE"]):
+        coins += bet
+        
+    return coins
