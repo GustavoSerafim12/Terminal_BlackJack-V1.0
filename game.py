@@ -42,16 +42,24 @@ def game_loop(coins):
 
     player_hand = [baralho.pop(), baralho.pop()]
     dealer_hand = [baralho.pop()]
-    render_game(coins, bet, player_hand, dealer_hand)
 
     x = 1
 
     ##player turn
     while(x == 1):
-        input_buffer = int(input("(1): HIT (2):STAY    :   "))
+
+        render_game(coins, bet, player_hand, dealer_hand)
+
+        try:
+            input_buffer = int(input("(1): HIT (2):STAY    :   "))
+        except ValueError:
+            input_buffer = ""
 
         if(input_buffer != 1 and input_buffer != 2):
+            os.system('clear')
             print("valor invalido")
+            time.sleep(0.5)
+            
 
         if(input_buffer == 2):
             x = 0

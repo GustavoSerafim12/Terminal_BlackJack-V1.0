@@ -16,6 +16,7 @@ valores = {
     "K": 10
 }
 
+
 naipes = ["♠", "♥", "♦", "♣"]
 
 
@@ -25,14 +26,16 @@ def value_card(carta):
 
 def value_mao(mao):
     value = 0
+    aces = 0
     for carta in mao:
+        if (carta[0] == "A"):
+            aces += 1
         value += value_card(carta)
-    
-    if(value > 21):
-        for carta in mao:
-            if(carta[0] == "A"):
-                value -= 10
-                continue
+   
+    while(value > 21 and aces > 0):
+        value -= 10
+        aces -= 1
+
     return value
 ##
 
