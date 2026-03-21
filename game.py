@@ -51,21 +51,21 @@ def game_loop(coins):
         render_game(coins, bet, player_hand, dealer_hand)
 
         try:
-            input_buffer = int(input("(1): HIT (2):STAY    :   "))
+            input_player_turn = int(input("(1): HIT (2):STAY    :   "))
         except ValueError:
-            input_buffer = ""
+            input_player_turn = ""
 
-        if(input_buffer != 1 and input_buffer != 2):
+        if(input_player_turn != 1 and input_player_turn != 2):
             os.system('clear')
             print("valor invalido")
             time.sleep(0.5)
             
 
-        if(input_buffer == 2):
+        if(input_player_turn == 2):
             x = 0
             continue
 
-        if(input_buffer == 1):
+        if(input_player_turn == 1):
             player_hand.append(baralho.pop())
             render_game(coins, bet, player_hand, dealer_hand)
             time.sleep(0.5)
