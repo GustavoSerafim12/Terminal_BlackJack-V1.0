@@ -51,6 +51,12 @@ Check version:
 python --version
 ```
 
+### Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
 ### Run the game
 
 From the project folder:
