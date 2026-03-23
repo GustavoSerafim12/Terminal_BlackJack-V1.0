@@ -1,9 +1,12 @@
 import os
-import time 
+import time
 from cartas import *
 import random
 from ui import *
 from apostas import *
+from rich.console import Console
+
+_console = Console()
 
 win_states = {
     "CONTINUE": 0,
@@ -27,11 +30,15 @@ def game():
     while True:
         coins = game_loop(coins, baralho)
         os.system('clear')
-        input_endgame = input("(1): continue ")
-        input_endgame = int(input_endgame)
+        _console.print("\n  [bold yellow]1[/bold yellow]  Continue   [dim]anything else to return to menu[/dim]", end="")
+        input_endgame = input("  > ")
+        try:
+            input_endgame = int(input_endgame)
+        except ValueError:
+            input_endgame = 0
         if(coins == 0):
-            print("You lose")
-            time.sleep(1)
+            _console.print("\n[bold red]  GAME OVER - No coins left![/bold red]")
+            time.sleep(1.5)
             break
         if(input_endgame != 1):
             break
@@ -61,14 +68,15 @@ def game_loop(coins, baralho):
 
         render_game(coins, bet, player_hand, dealer_hand)
 
+        _console.print("\n  [bold yellow]1[/bold yellow]  Hit   [bold yellow]2[/bold yellow]  Stand", end="")
         try:
-            input_player_turn = int(input("(1): HIT (2):STAY    :  "))
+            input_player_turn = int(input("  > "))
         except ValueError:
             input_player_turn = ""
 
         if(input_player_turn != 1 and input_player_turn != 2):
             os.system('clear')
-            print("valor invalido")
+            print_error("Invalid input")
             time.sleep(0.5)
             
 

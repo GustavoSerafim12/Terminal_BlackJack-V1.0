@@ -1,4 +1,4 @@
-from ui import render_aposta
+from ui import render_aposta, print_error
 import time
 import os
 
@@ -13,7 +13,7 @@ def aposta(coins, bet):
 
     render_aposta(coins)
 
-    input_apostas = input(" digite quanto quer apostar: ")
+    input_apostas = input("  How much to bet? > ")
     try:
         bet = int(input_apostas)
     except ValueError:
@@ -21,13 +21,13 @@ def aposta(coins, bet):
     
     # Validate bet: must be positive and not exceed available coins
     if(bet > coins or bet <= 0):
-        print("valor invaldo!")
+        print_error("Invalid bet amount")
         time.sleep(1)
         os.system('clear')
         bet = 0
         return coins, bet, False
     if(bet < coins*0.1):
-        print("aposta minima de 10% do valor total")
+        print_error(f"Minimum bet is 10% ({int(coins*0.1)} coins)")
         time.sleep(1)
         os.system('clear')
         bet = 0
