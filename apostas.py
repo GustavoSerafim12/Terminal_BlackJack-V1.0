@@ -26,7 +26,7 @@ def aposta(coins, bet):
         os.system('clear')
         bet = 0
         return coins, bet, False
-    if(bet < coins*0.1):
+    if(bet < int(coins*0.1)):
         print_error(f"Minimum bet is 10% ({int(coins*0.1)} coins)")
         time.sleep(1)
         os.system('clear')

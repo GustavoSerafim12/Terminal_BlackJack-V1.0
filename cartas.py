@@ -1,4 +1,3 @@
-import random
 
 valores = {
     "A": 11,

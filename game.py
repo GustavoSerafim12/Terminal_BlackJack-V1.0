@@ -44,12 +44,13 @@ def game():
             break
     
     return "menu"
-##
+##``
 
 def game_loop(coins, baralho):
 
+    baralho_em_jogo = baralho.copy()
     # Create shuffled deck: all combinations of values and suits
-    random.shuffle(baralho)
+    random.shuffle(baralho_em_jogo)
 
     player_hand = None
     dealer_hand = None
@@ -59,9 +60,8 @@ def game_loop(coins, baralho):
     while(valid_bet == False):
         coins, bet, valid_bet = aposta(coins, bet)
 
-    player_hand = [baralho.pop(), baralho.pop()]
-    dealer_hand = [baralho.pop()]
-
+    player_hand = [baralho_em_jogo.pop(), baralho_em_jogo.pop()]
+    dealer_hand = [baralho_em_jogo.pop()]
 
     ##player turn
     while True:
@@ -84,7 +84,7 @@ def game_loop(coins, baralho):
             break
 
         if(input_player_turn == 1):
-            player_hand.append(baralho.pop())
+            player_hand.append(baralho_em_jogo.pop())
             render_game(coins, bet, player_hand, dealer_hand)
             time.sleep(0.5)
             win = check_win(player_hand, dealer_hand, False)
@@ -94,13 +94,13 @@ def game_loop(coins, baralho):
                 break
     
     #dealer turn
-    dealer_hand.append(baralho.pop())
+    dealer_hand.append(baralho_em_jogo.pop())
     render_game(coins, bet, player_hand, dealer_hand)
     win = check_win(player_hand, dealer_hand, False)
     time.sleep(1)
 
     while(value_mao(dealer_hand) < 17 and win == win_states["CONTINUE"]):
-        dealer_hand.append(baralho.pop())
+        dealer_hand.append(baralho_em_jogo.pop())
         render_game(coins, bet, player_hand, dealer_hand)
         win = check_win(player_hand, dealer_hand, False)
         time.sleep(1)
